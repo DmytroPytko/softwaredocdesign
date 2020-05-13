@@ -1,0 +1,39 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.pytko.microsoft"
+    },
+    "jhipsterVersion": "6.8.0",
+    "applicationType": "monolith",
+    "baseName": "microsoft",
+    "packageName": "com.pytko.microsoft",
+    "packageFolder": "com/pytko/microsoft",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "no",
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "ZmExN2U1NmUyMDIyNzZhMDNhZjM0MjhmYWNlZmQwMGY5YTRiNzQ5ZjAyZWMxNzJiNzY0Yjk2N2NmYjBkYjU2MjRjNGU1OTk2MTdjMGE5NzkyYzQ1YjlhNjdhYWZlYTQ5NzRhNDkxYzQ3MGI4NTA0NDU4ZGI5NDkyYTAzMWRjMDU=",
+    "embeddableLaunchScript": false,
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "clientFramework": "angularX",
+    "clientTheme": "flatly",
+    "clientThemeVariant": "light",
+    "creationTimestamp": 1588889106754,
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": false,
+    "blueprints": []
+  }
+}

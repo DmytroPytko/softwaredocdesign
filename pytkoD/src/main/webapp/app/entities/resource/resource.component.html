@@ -1,0 +1,83 @@
+<div>
+    <h2 id="page-heading">
+        <span>Resources</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-resource" [routerLink]="['/resource/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span>
+            Create a new Resource
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="resources?.length === 0">
+        <span>No resources found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="resources?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="startDate"><span>Start Date</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="endDate"><span>End Date</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="note"><span>Note</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="employee.id"><span>Employee</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="contractType.id"><span>Contract Type</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="project.id"><span>Project</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+                <tr *ngFor="let resource of resources ;trackBy: trackId">
+                    <td><a [routerLink]="['/resource', resource.id, 'view']">{{ resource.id }}</a></td>
+                    <td>{{ resource.startDate | date:'medium' }}</td>
+                    <td>{{ resource.endDate | date:'medium' }}</td>
+                    <td>{{ resource.note }}</td>
+                    <td>
+                        <div *ngIf="resource.employee">
+                            <a [routerLink]="['/employee', resource.employee?.id, 'view']" >{{ resource.employee?.id }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="resource.contractType">
+                            <a [routerLink]="['/contract-type', resource.contractType?.id, 'view']" >{{ resource.contractType?.id }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="resource.project">
+                            <a [routerLink]="['/project', resource.project?.id, 'view']" >{{ resource.project?.id }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/resource', resource.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/resource', resource.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(resource)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
